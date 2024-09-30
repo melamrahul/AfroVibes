@@ -682,36 +682,7 @@
         }
 
     </script>
-    <script>
-        function detectDevTools() {
-            let devtoolsOpen = false;
-            const threshold = 160; // Threshold for detecting devtools open
 
-            function checkDevTools() {
-                const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-                const heightThreshold = window.outerHeight - window.innerHeight > threshold;
-
-                if (widthThreshold || heightThreshold) {
-                    devtoolsOpen = true;
-                    handleDevToolsOpen();
-                } else {
-                    devtoolsOpen = false;
-                }
-            }
-
-            function handleDevToolsOpen() {
-                if (devtoolsOpen) {
-                    // Redirect to Google
-                    window.location.href = "https://google.com";
-                }
-            }
-
-            // Check periodically
-            setInterval(checkDevTools, 500);
-        }
-
-        window.onload = detectDevTools;
-    </script>
     <script>
     // Disable right-click context menu
     document.oncontextmenu = function() {
