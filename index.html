@@ -129,7 +129,7 @@
                 <div style="display: flex; gap: 10px;">
                     <h3>Send Payment Screenshot</h3>
                     <div class="bank" style="justify-content: right;">
-                        <a href="https://api.whatsapp.com/send?text=Hi,%20Book%20your%20Ticket%20for%20AfroVibes%20(It's%20not%20a%20Party,%20It's%20an%20Experience).%0AUse%20the%20below%20Link%20to%20Book%20your%20ticket:%0Ahttps://melamrahul.github.io/AfroVibes"
+                        <a href="https://api.whatsapp.com/send?phone=+917893313732&text=Hi,%20Book%20your%20Ticket%20for%20AfroVibes%20(It's%20not%20a%20Party,%20It's%20an%20Experience).%0AUse%20the%20below%20Link%20to%20Book%20your%20ticket:%0Ahttps://melamrahul.github.io/AfroVibes"
                             style="color: green; text-decoration: none;">
                             <img src="https://cdn-icons-png.flaticon.com/512/15713/15713434.png"
                                 style="width: 35px; height: 35px; margin-top: 10px;">
@@ -194,8 +194,166 @@
                 style="text-decoration: none; color: #197afe; border: 2px solid #197afe; padding: 5px; border-radius: 10px;">M.Rahul</a>
         </p>
     </footer>
-<script>var form=document.getElementById("sheetdb-form"),loaderContainer=document.getElementById("loaderContainer"),thankYouMessage=document.getElementById("thankYouMessage");function validateForm(){const e=document.getElementById("firstName").value.trim(),t=document.getElementById("lastName").value.trim(),n=document.getElementById("nationality").value.trim(),o=document.getElementById("whatsappNumber").value.trim(),a=/^[A-Za-z\s]+$/;return a.test(e)&&a.test(t)?a.test(n)?!!/^\d{10}$/.test(o)||(openDialog("Enter valid 10 digit WhatsApp Number."),!1):(openDialog("Nationality should contain only alphabets."),!1):(openDialog("First Name should not contain Letters or Special Characters."),!1)}function openDialog(e){document.getElementById("dialog-message").innerText=e,document.getElementById("dialog").style.display="flex"}function closeDialog(){document.getElementById("dialog").style.display="none"}function copyPhoneNumber(){navigator.clipboard.writeText("7893313732").then((()=>{const e=document.getElementById("overlay");e.style.display="flex",setTimeout((()=>{e.style.display="none"}),2e3)}))}function sendWhatsAppMessage(){const e=document.getElementById("firstName").value,t=document.getElementById("lastName").value,n=`https://api.whatsapp.com/send?phone=+917893313732&text=${encodeURIComponent(`Hi, Ariel Henoc. My Name is ${e} ${t}. Here's my Payment Screenshot.`)}`;window.location.href=n}function detectDevTools(){let e=!1;setInterval((function(){const t=window.outerWidth-window.innerWidth>160,n=window.outerHeight-window.innerHeight>160;t||n?(e=!0,e&&(alert("You can't see the Source Code"),window.location.href="https://google.com")):e=!1}),500)}form.addEventListener("submit",(function(e){e.preventDefault(),validateForm()&&confirm("Are you sure you want to submit the details?")&&(loaderContainer.style.display="block",fetch(form.action,{method:"POST",body:new FormData(form)}).then((e=>e.json())).then((e=>{e&&(thankYouMessage.style.display="block",document.getElementById("reg").style.display="none")})).catch((e=>{console.error("Error submitting the form:",e),alert("There was an error submitting the form. Please try again.")})).finally((()=>{loaderContainer.style.display="none"})))})),window.onload=detectDevTools,document.oncontextmenu=function(){return!1},document.onkeydown=function(e){return(!e.ctrlKey||!e.shiftKey||e.keyCode!="I".charCodeAt(0))&&((!e.ctrlKey||!e.shiftKey||e.keyCode!="J".charCodeAt(0))&&((!e.ctrlKey||e.keyCode!="U".charCodeAt(0))&&void 0))};</script>
-    <script src="/chunk/scripts/project/AfroVibes/script.js"></script>
+<script>
+    var form = document.getElementById('sheetdb-form');
+        var loaderContainer = document.getElementById('loaderContainer');
+        var thankYouMessage = document.getElementById('thankYouMessage');
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Validate the form first
+            if (validateForm()) {
+                // Show confirmation dialog
+                if (confirm("Are you sure you want to submit the details?")) {
+                    // Show loader
+                    loaderContainer.style.display = 'block';
+
+                    // Send form data via Fetch API
+                    fetch(form.action, {
+                        method: "POST",
+                        body: new FormData(form),
+                    }).then(response => response.json()) // Parse JSON response
+                        .then((result) => {
+                            if (result) {
+                                // Display thank you message
+                                thankYouMessage.style.display = 'block';
+                                // Hide form
+                                document.getElementById('reg').style.display = 'none';
+                            }
+                        }).catch(error => {
+                            console.error("Error submitting the form:", error);
+                            alert("There was an error submitting the form. Please try again.");
+                        }).finally(() => {
+                            // Hide loader in all cases
+                            loaderContainer.style.display = 'none';
+                        });
+                }
+            }
+        });
+
+        // Validation function
+        function validateForm() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const nationality = document.getElementById('nationality').value.trim();
+            const whatsappNumber = document.getElementById('whatsappNumber').value.trim();
+
+            const nameRegex = /^[A-Za-z\s]+$/; // Allow alphabets and spaces
+            const phoneRegex = /^\d{10}$/; // Regex for exactly 10 digits
+
+            // Validate first name
+            if (!nameRegex.test(firstName)) {
+                openDialog('First Name should not contain Letters or Special Characters.');
+                return false;
+            }
+
+            // Validate last name
+            if (!nameRegex.test(lastName)) {
+                openDialog('First Name should not contain Letters or Special Characters.');
+                return false;
+            }
+
+            // Validate nationality
+            if (!nameRegex.test(nationality)) {
+                openDialog('Nationality should contain only alphabets.');
+                return false;
+            }
+
+            // Validate WhatsApp number
+            if (!phoneRegex.test(whatsappNumber)) {
+                openDialog('Enter valid 10 digit WhatsApp Number.');
+                return false;
+            }
+
+            return true; // If all validations pass
+        }
+
+        // Dialog functions
+        function openDialog(message) {
+            document.getElementById('dialog-message').innerText = message;
+            document.getElementById('dialog').style.display = 'flex';
+        }
+
+        function closeDialog() {
+            document.getElementById('dialog').style.display = 'none';
+        }
+
+        function copyPhoneNumber() {
+            const phoneNumber = "7893313732";
+            navigator.clipboard.writeText(phoneNumber).then(() => {
+                const overlay = document.getElementById('overlay');
+                overlay.style.display = 'flex';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 2000);
+            });
+        }
+
+        function sendWhatsAppMessage() {
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const phone = "+917893313732";
+            const message = `Hi, Ariel Henoc. My Name is ${firstName} ${lastName}. Here's my Payment Screenshot.`;
+            const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+            window.location.href = url;
+        }
+        function sendWhatsAppScreenShot() {
+                const sfirstName = document.getElementById("firstName").value;
+                const slastName = document.getElementById("lastName").value;
+                const phone = "+917893313732";
+                const message = "Hi,%20Ariel%20Henoc.%20My%20Name%20is ${firstName} ${lastName}.%20Here's%20my%20Payment%20Screenshot.";
+                const url = https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)};
+                window.location.href = url;
+            }
+
+        function detectDevTools() {
+            let devtoolsOpen = false;
+            const threshold = 160; // Threshold for detecting devtools open
+
+            function checkDevTools() {
+                const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+                const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+
+                if (widthThreshold || heightThreshold) {
+                    devtoolsOpen = true;
+                    handleDevToolsOpen();
+                } else {
+                    devtoolsOpen = false;
+                }
+            }
+
+            function handleDevToolsOpen() {
+                if (devtoolsOpen) {
+                    alert("You can't see the Source Code");
+                    // Redirect to Google
+                    window.location.href = "https://google.com";
+                }
+            }
+
+            // Check periodically
+            setInterval(checkDevTools, 500);
+        }
+
+        window.onload = detectDevTools;
+    // Disable right-click context menu
+    document.oncontextmenu = function() {
+        return false;
+    };
+
+    // Disable certain key combinations
+    document.onkeydown = function(e) {
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+            return false;
+        }
+        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+            return false;
+        }
+    };
+</script>
 </body>
 
 </html>
